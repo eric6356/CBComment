@@ -1,0 +1,5 @@
+flask
+flask-cors
+pymongo
+beautifulsoup4
+requests

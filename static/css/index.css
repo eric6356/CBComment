@@ -1,0 +1,102 @@
+html body {
+    margin: 0;
+    padding: 0;
+}
+#head {
+    padding: 5px;
+    background-color: #3369e8;
+    display: flex;
+    justify-content: center;
+    height: 20px;
+}
+input {
+    flex-grow: 1;
+}
+span.maintitle {
+    color: white;
+    font-weight: 700;
+}
+span.icon {
+    width: 20px;
+    margin: 2px;
+    background-repeat: no-repeat;
+    background-size: 16px 16px;
+}
+
+/*span.logo {*/
+    /*background-image: url(../image/glyphicons-310-comments.png);*/
+/*}*/
+/*span.search {*/
+    /*background-image: url(../image/glyphicons-28-search.png);*/
+/*}*/
+.comment {
+    margin: 0 5px 5px;
+    border-top: 1px solid lightgray;
+}
+.comment p {
+    margin: 5px;
+}
+.commentbody {
+    margin-top: 10px;
+    background-color: #ffff99;
+    border: solid 1px orange;
+    border-radius: 5px;
+}
+.commenttriangle{
+    position: relative;
+    display: block;
+    height: 10px;
+}
+.commenttriangle .toptriangle {
+    position: absolute;
+    margin-left: 10px;
+    border-right: transparent 10px solid;
+    border-left: transparent 10px solid;
+    border-top: orange 10px solid;
+    border-bottom: 0;
+    width: 0;
+    height: 0;
+}
+.commenttriangle .bottomtriangle {
+    position: absolute;
+    overflow: visible;
+    top: -1px;
+    margin-left: 10px;
+    border-right: transparent 10px solid;
+    border-left: transparent 10px solid;
+    border-top: #ffff99 10px solid;
+    border-bottom: 0;
+    width: 0;
+    height: 0;
+}
+.commentbody p {
+    color: #3369e8;
+}
+.commentfoot p {
+    color: gray;
+}
+.commentfoot a {
+    margin: 8px;
+    text-decoration: none;
+}
+.commentfoot a:link,
+.commentfoot a:visited {
+    color: #3369e8;
+}
+
+.foot {
+    display: flex;
+    justify-content: center;
+}
+.foot .more {
+    flex-grow: 1;
+    background-color: #3369e8;
+    margin: 10px;
+    border-radius: 5px;
+    text-align: center;
+    color: #fff;
+    font-weight: 700;
+}
+.foot .more p {
+    margin: 5px;
+}
