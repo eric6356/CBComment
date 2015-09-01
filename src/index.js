@@ -1,5 +1,7 @@
 'use strict';
 
+const APIURL = 'http://121.41.112.93/api/comment/';
+
 class Head extends React.Component {
   handleClick(){
     console.log('click')
@@ -52,18 +54,20 @@ class Foot extends React.Component {
 class Main extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {commentData: [], page: 0, moreText: '加载中...'}
+    this.state = {commentData: [], page: 1, moreText: '加载中...'}
   }
   componentDidMount(){
-    jx.load('http://127.0.0.1:5000/comment/1', function(res){console.log(res)});
-    this.setState({moreText: '加载更多'}, null);
+    jx.load(APIURL+'1', function(res){
+      this.setState({moreText: '加载更多', commentData: JSON.parse(res)}, null);
+    }.bind(this));
   }
   more() {
-    //this.setState({moreText: '加载中...'}, null);
     let page = this.state.page + 1;
     let oldData = this.state.commentData;
-    let newData = oldData.concat(allData[page-1]);
-    this.setState({commentData: newData, page: page}, null)
+    jx.load(APIURL+page, function(res){
+      let newData = oldData.concat(JSON.parse(res));
+      this.setState({commentData: newData, page: page}, null)
+    }.bind(this));
   }
   render() {
     let commentNodes = this.state.commentData.map(function (commentData, i) {
@@ -71,7 +75,7 @@ class Main extends React.Component {
         key={i}
         comment={commentData.comment}
         location={commentData.location}
-        href={commentData.href}
+        href={'http://m.cnbeta.com' + commentData.href}
         title={commentData.title}
       />
     });

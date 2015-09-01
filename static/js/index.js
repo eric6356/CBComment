@@ -1,81 +1,6 @@
 'use strict';
 
-const data = [
-  {
-    comment: "飘飘袅袅十三余，霜叶红于二月花。笑问客从何处来，牧童遥指杏花村。",
-    location: "浙江省杭州市",
-    href: "#",
-    title: "九月九日忆山东兄弟"
-  },{
-    comment: "飘飘袅袅十三余，霜叶红于二月花。笑问客从何处来，牧童遥指杏花村。",
-    location: "浙江省杭州市",
-    href: "#",
-    title: "九月九日忆山东兄弟"
-  },{
-    comment: "飘飘袅袅十三余，霜叶红于二月花。笑问客从何处来，牧童遥指杏花村。",
-    location: "浙江省杭州市",
-    href: "#",
-    title: "九月九日忆山东兄弟"
-  }
-];
-const data2 = [
-  {
-    comment: "树树皆秋色，山山唯落辉",
-    location: "广东省广州市",
-    href: "#",
-    title: "野望"
-  },{
-    comment: "树树皆秋色，山山唯落辉",
-    location: "广东省广州市",
-    href: "#",
-    title: "野望"
-  },{
-    comment: "树树皆秋色，山山唯落辉",
-    location: "广东省广州市",
-    href: "#",
-    title: "野望"
-  },{
-    comment: "树树皆秋色，山山唯落辉",
-    location: "广东省广州市",
-    href: "#",
-    title: "野望"
-  },{
-    comment: "树树皆秋色，山山唯落辉",
-    location: "广东省广州市",
-    href: "#",
-    title: "野望"
-  }
-];
-const data3 = [
-  {
-    comment: "南村群童欺我老无力，公然抱茅入竹去",
-    location: "湖南省长沙市",
-    href: "#",
-    title: "回乡偶书"
-  },{
-    comment: "南村群童欺我老无力，公然抱茅入竹去",
-    location: "湖南省长沙市",
-    href: "#",
-    title: "回乡偶书"
-  },{
-    comment: "南村群童欺我老无力，公然抱茅入竹去",
-    location: "湖南省长沙市",
-    href: "#",
-    title: "回乡偶书"
-  },{
-    comment: "南村群童欺我老无力，公然抱茅入竹去",
-    location: "湖南省长沙市",
-    href: "#",
-    title: "回乡偶书"
-  },{
-    comment: "南村群童欺我老无力，公然抱茅入竹去",
-    location: "湖南省长沙市",
-    href: "#",
-    title: "回乡偶书"
-  }
-];
-
-const allData = [data, data2, data3];
+const APIURL = 'http://121.41.112.93/api/comment/';
 
 class Head extends React.Component {
   handleClick(){
@@ -129,18 +54,20 @@ class Foot extends React.Component {
 class Main extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {commentData: [], page: 0, moreText: '加载中...'}
+    this.state = {commentData: [], page: 1, moreText: '加载中...'}
   }
   componentDidMount(){
-    jx.load('http://127.0.0.1:5000/comment/1', function(res){console.log(res)});
-    this.setState({moreText: '加载更多'}, null);
+    jx.load(APIURL+'1', function(res){
+      this.setState({moreText: '加载更多', commentData: JSON.parse(res)}, null);
+    }.bind(this));
   }
   more() {
-    //this.setState({moreText: '加载中...'}, null);
     let page = this.state.page + 1;
     let oldData = this.state.commentData;
-    let newData = oldData.concat(allData[page-1]);
-    this.setState({commentData: newData, page: page}, null)
+    jx.load(APIURL+page, function(res){
+      let newData = oldData.concat(JSON.parse(res));
+      this.setState({commentData: newData, page: page}, null)
+    }.bind(this));
   }
   render() {
     let commentNodes = this.state.commentData.map(function (commentData, i) {
@@ -148,7 +75,7 @@ class Main extends React.Component {
         key: i, 
         comment: commentData.comment, 
         location: commentData.location, 
-        href: commentData.href, 
+        href: 'http://m.cnbeta.com' + commentData.href, 
         title: commentData.title}
       )
     });
