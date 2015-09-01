@@ -33,7 +33,12 @@ class Comment extends React.Component {
           React.createElement("div", {className: "bottomtriangle"})
         ), 
         React.createElement("div", {className: "commentfoot"}, 
-          React.createElement("p", null, "来自", React.createElement("strong", null, this.props.location), "的匿名人士对新闻", React.createElement("a", {href: this.props.href}, this.props.title), "的评论")
+          React.createElement("p", null, "来自", 
+            React.createElement("strong", null, this.props.location), 
+            "的匿名人士对新闻", 
+            React.createElement("a", {href: this.props.href, target: "_blank"}, this.props.title), 
+            "的评论"
+          )
         )
       )
     )

@@ -33,7 +33,12 @@ class Comment extends React.Component {
           <div className="bottomtriangle"></div>
         </div>
         <div className="commentfoot">
-          <p>来自<strong>{this.props.location}</strong>的匿名人士对新闻<a href={this.props.href}>{this.props.title}</a>的评论</p>
+          <p>来自
+            <strong>{this.props.location}</strong>
+            的匿名人士对新闻
+            <a href={this.props.href} target="_blank">{this.props.title}</a>
+            的评论
+          </p>
         </div>
       </div>
     )
