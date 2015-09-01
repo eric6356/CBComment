@@ -21,7 +21,7 @@ def jsonp(func):
 @app.route('/api/comment/<int:page>')
 @jsonp
 def comment(page):
-    skip = page - 1
+    skip = (page - 1) * 10
     comments = list(comment_collection
                     .find(None, {'_id': False, 'datetime': False})
                     .sort('datetime', DESCENDING)

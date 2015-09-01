@@ -22,9 +22,9 @@ def get_comments(soup):
                        title=title,
                        href=href,
                        datetime=datetime.now())
-        print(comment)
+        print(comment['comment'])
         sleep(0.1)
-        comments.append(comment)
+        comments.insert(0, comment)
     return comments
 
 
@@ -32,7 +32,7 @@ def save_history():
     for i in range(50, 0, -1):
         resp = requests.get('http://m.cnbeta.com/jh_{}.htm'.format(i))
         soup = BeautifulSoup(resp.content.decode(), 'html.parser')
-        comments = get_comments(soup)[::-1]
+        comments = get_comments(soup)
         comment_collection.insert_many(comments)
 
 
