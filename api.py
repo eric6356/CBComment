@@ -18,7 +18,7 @@ def jsonp(func):
     return inner
 
 
-@app.route('/comment/<int:page>')
+@app.route('/api/comment/<int:page>')
 @jsonp
 def comment(page):
     skip = page - 1
