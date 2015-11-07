@@ -4,6 +4,13 @@ from bs4 import BeautifulSoup
 from datetime import datetime
 from pymongo import MongoClient, DESCENDING
 import os
+import logging
+import logging.handlers
+
+logger = logging.getLogger(__name__)
+logger.setLevel(logging.DEBUG)
+logger.addHandler(logging.StreamHandler())
+
 
 MONGO_URI = os.environ.get('MONGO_URI', 'mongodb://localhost:27017/')
 client = MongoClient(MONGO_URI)
@@ -22,7 +29,7 @@ def get_comments(soup):
                        title=title,
                        href=href,
                        datetime=datetime.now())
-        print(comment['comment'])
+        logger.info('comment got: %s', comment['comment'])
         sleep(0.1)
         comments.insert(0, comment)
     return comments
@@ -48,8 +55,10 @@ def save_new():
 
     if new_comments:
         comment_collection.insert_many(new_comments)
-    print('{} comment(s) saved!'.format(len(new_comments)))
+    logger.info('%s comment(s) saved!', len(new_comments))
 
 
 if __name__ == '__main__':
-    save_new()
+    while True:
+        save_new()
+        sleep(60*60)
