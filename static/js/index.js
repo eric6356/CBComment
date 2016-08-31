@@ -9,9 +9,9 @@ class Head extends React.Component {
 
   render() {
     return(
-      React.createElement("div", {id: "head"}, 
+      React.createElement("div", {id: "head"},
         React.createElement("span", {className: "maintitle"}, "CBComment")
-        /* 
+        /*
         <span className="icon logo"></span>
         <input/>
         <span className="icon search" onClick={this.handleClick}></span>
@@ -24,19 +24,19 @@ class Head extends React.Component {
 class Comment extends React.Component {
   render() {
     return (
-      React.createElement("div", {className: "comment"}, 
-        React.createElement("div", {className: "commentbody"}, 
+      React.createElement("div", {className: "comment"},
+        React.createElement("div", {className: "commentbody"},
           React.createElement("p", null, this.props.comment)
-        ), 
-        React.createElement("div", {className: "commenttriangle"}, 
-          React.createElement("div", {className: "toptriangle"}), 
+        ),
+        React.createElement("div", {className: "commenttriangle"},
+          React.createElement("div", {className: "toptriangle"}),
           React.createElement("div", {className: "bottomtriangle"})
-        ), 
-        React.createElement("div", {className: "commentfoot"}, 
-          React.createElement("p", null, "来自", 
-            React.createElement("strong", null, this.props.location), 
-            "的匿名人士对新闻", 
-            React.createElement("a", {href: this.props.href, target: "_blank"}, this.props.title), 
+        ),
+        React.createElement("div", {className: "commentfoot"},
+          React.createElement("p", null, "来自",
+            React.createElement("strong", null, this.props.location),
+            "的匿名人士对新闻",
+            React.createElement("a", {href: this.props.href, target: "_blank"}, this.props.title),
             "的评论"
           )
         )
@@ -48,7 +48,7 @@ class Comment extends React.Component {
 class Foot extends React.Component {
   render() {
     return (
-      React.createElement("div", {className: "foot"}, 
+      React.createElement("div", {className: "foot"},
         React.createElement("div", {className: "more", onClick: this.props.more}, React.createElement("p", null, this.props.moreText))
       )
     )
@@ -77,17 +77,17 @@ class Main extends React.Component {
   render() {
     let commentNodes = this.state.commentData.map(function (commentData, i) {
       return React.createElement(Comment, {
-        key: i, 
-        comment: commentData.comment, 
-        location: commentData.location, 
-        href: 'http://m.cnbeta.com' + commentData.href, 
+        key: i,
+        comment: commentData.comment,
+        location: commentData.location,
+        href: 'http://m.cnbeta.com' + commentData.href,
         title: commentData.title}
       )
     });
     return (
-      React.createElement("div", {className: "main"}, 
-        React.createElement(Head, null), 
-        commentNodes, 
+      React.createElement("div", {className: "main"},
+        React.createElement(Head, null),
+        commentNodes,
         React.createElement(Foot, {more: this.more.bind(this), moreText: this.state.moreText})
       )
     )
