@@ -13,6 +13,7 @@ class Head extends React.Component {
         React.createElement("span", {className: "maintitle"}, "CBComment")
         /*
         <span className="icon logo"></span>
+        <input/>
         <span className="icon search" onClick={this.handleClick}></span>
         */
       )
