@@ -11,9 +11,8 @@ class Head extends React.Component {
     return(
       <div id="head">
         <span className="maintitle">CBComment</span>
-        {/* 
+        {/*
         <span className="icon logo"></span>
-        <input/>
         <span className="icon search" onClick={this.handleClick}></span>
         */}
       </div>
