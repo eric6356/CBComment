@@ -4,6 +4,7 @@ from pymongo import MongoClient, DESCENDING
 import json
 import os
 
+
 app = Flask(__name__)
 CORS(app)
 MONGO_URI = os.environ.get('MONGO_URI', 'mongodb://localhost:27017/')
@@ -28,6 +29,7 @@ def comment(page):
                     .skip(skip)
                     .limit(10))
     return comments
+
 
 if __name__ == '__main__':
     app.run()
